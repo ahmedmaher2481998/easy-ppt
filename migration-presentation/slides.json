@@ -1,0 +1,156 @@
+{
+  "config": {
+    "title": "Stencil → Vue Migration",
+    "author": "EasyVideo Team",
+    "theme": {
+      "bg": "#0f0f0f",
+      "bgCard": "#1a1a1a",
+      "text": "#ffffff",
+      "textMuted": "#888888",
+      "accent": "#FC794B",
+      "accentLight": "rgba(252, 121, 75, 0.15)",
+      "border": "#2a2a2a"
+    }
+  },
+  "slides": [
+    {
+      "type": "title",
+      "badge": "Migration Complete",
+      "title": "Stencil → Vue Migration",
+      "subtitle": "A full editor migration with shared logic refactor, UI rebuild, and brand-new E2E testing suite",
+      "stats": [
+        { "value": "32", "label": "Days" },
+        { "value": "267", "label": "Vue Components" },
+        { "value": "140", "label": "E2E Tests" }
+      ],
+      "flow": {
+        "from": "Stencil.js",
+        "to": "Vue 3"
+      }
+    },
+    {
+      "type": "content",
+      "badge": "The Mission",
+      "title": "What We Delivered",
+      "bullets": [
+        "Full migration from Stencil to Vue",
+        "Shared logic refactor & extraction",
+        "Complete UI rebuild",
+        "Brand-new E2E testing suite (first ever!)"
+      ],
+      "note": "Reduced technical risk, improved developer velocity, added automated guardrails"
+    },
+    {
+      "type": "stats",
+      "badge": "The Scale",
+      "title": "Migration by the Numbers",
+      "stats": [
+        { "value": "138", "label": "Stencil Components" },
+        { "value": "108", "label": "TSX Icons" },
+        { "value": "267", "label": "Vue Components" },
+        { "value": "32+", "label": "Planning Docs" }
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "New Capability",
+      "title": "E2E Testing Suite",
+      "subtitle": "First time EasyVideo has automated end-to-end regression coverage",
+      "bullets": [
+        "Framework: Playwright",
+        "17 E2E test files",
+        "140 test cases covering critical workflows",
+        "Scenarios previously validated only via manual QA"
+      ],
+      "note": "Acts as guardrails to close the feedback loop during development"
+    },
+    {
+      "type": "content",
+      "badge": "Timeline",
+      "title": "32 Days Start to Finish",
+      "subtitle": "Dec 22, 2025 → Jan 23, 2026",
+      "bullets": [
+        "Phase 1 (Dec 24-26): 16 shared stores + core services extracted",
+        "Phase 2 (Dec 30-Jan 22): 5 UI layers migrated to Vue",
+        "Cleanup (Jan 22-23): Old framework removal & cleanup"
+      ],
+      "note": "1 week of planning before execution began"
+    },
+    {
+      "type": "content",
+      "badge": "The Secret Sauce",
+      "title": "How We Did It",
+      "bullets": [
+        "Claude Code as AI pair programmer",
+        "CLAUDE.md with project knowledge & architecture rules",
+        "Custom skills for repetitive migration tasks",
+        "Strict domain-bounded architecture patterns"
+      ],
+      "image": "images/reddit-meme.png",
+      "imageAlt": "Haha Claude go brrrr meme",
+      "imageCaption": "Our actual migration strategy"
+    },
+    {
+      "type": "stats",
+      "badge": "Industry Comparison",
+      "title": "4-5× Faster Than Normal",
+      "subtitle": "Comparable migrations typically take 5-8 months with E2E",
+      "stats": [
+        { "value": "5-8", "label": "Months (Industry)" },
+        { "value": "32", "label": "Days (Us)" },
+        { "value": "4-5×", "label": "Faster" }
+      ],
+      "note": "With tests built in, not added later"
+    },
+    {
+      "type": "content",
+      "badge": "E2E Benefits",
+      "title": "Why Testing Matters",
+      "bullets": [
+        "Automated regression for critical editor workflows",
+        "Covers scenarios previously manual-only",
+        "Enables safer refactors going forward",
+        "Faster future iteration with confidence"
+      ],
+      "note": "Guardrails that didn't exist before"
+    },
+    {
+      "type": "content",
+      "badge": "The Team",
+      "title": "Who Made It Happen",
+      "bullets": [
+        "Ahmed Maher — Architecture, execution plan, core logic migration, UI delivery & cleanup",
+        "Omar Kamal — E2E test infrastructure, migration validation, long-term stability"
+      ],
+      "note": "Two engineers. 32 days. One massive migration."
+    },
+    {
+      "type": "content",
+      "badge": "Impact",
+      "title": "Why This Matters",
+      "bullets": [
+        "Removes legacy framework constraints",
+        "Establishes modern, scalable Vue foundation",
+        "Introduces automated regression testing (first time!)",
+        "Reduces future change risk and QA overhead"
+      ]
+    },
+    {
+      "type": "stats",
+      "badge": "Final Score",
+      "title": "The Results",
+      "stats": [
+        { "value": "267", "label": "Vue Components" },
+        { "value": "140", "label": "E2E Tests" },
+        { "value": "32", "label": "Days" },
+        { "value": "0", "label": "Prod Incidents" }
+      ]
+    },
+    {
+      "type": "title",
+      "title": "Questions?",
+      "subtitle": "A faster, safer, and more maintainable editor platform moving forward",
+      "note": "Thank you for coming to our migration story"
+    }
+  ]
+}
