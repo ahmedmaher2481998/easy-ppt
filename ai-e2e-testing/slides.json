@@ -1,0 +1,393 @@
+{
+  "config": {
+    "title": "AI-Driven E2E Testing",
+    "author": "EasyVideo Team",
+    "theme": {
+      "bg": "#0f0f0f",
+      "bgCard": "#1a1a1a",
+      "text": "#ffffff",
+      "textMuted": "#888888",
+      "accent": "#7C3AED",
+      "accentLight": "rgba(124, 58, 237, 0.15)",
+      "border": "#2a2a2a"
+    }
+  },
+  "slides": [
+    {
+      "type": "title",
+      "badge": "E2E Testing with AI",
+      "title": "AI-Driven Test Generation",
+      "subtitle": "How Claude Code + Playwright MCP created 100+ E2E tests for a framework migration",
+      "stats": [
+        { "value": "100+", "label": "Tests Generated" },
+        { "value": "10+", "label": "Test Files" },
+        { "value": "~80%", "label": "AI-Driven" }
+      ],
+      "flow": {
+        "from": "AI Prompts",
+        "to": "Passing Tests"
+      }
+    },
+    {
+      "type": "content",
+      "badge": "The Challenge",
+      "title": "Why AI-Generated Tests?",
+      "bullets": [
+        "Stencil to Vue migration required regression coverage",
+        "No existing E2E tests - manual QA only",
+        "Tests must survive framework changes",
+        "100+ workflows to cover in limited time"
+      ],
+      "note": "Traditional approach: months of manual test writing. Our approach: AI as test author."
+    },
+    {
+      "type": "content",
+      "badge": "Why Claude Code?",
+      "title": "An Agentic Coding Assistant",
+      "subtitle": "Not just chat - autonomous task execution",
+      "bullets": [
+        "Runs in terminal with full filesystem and shell access",
+        "Can execute commands, read errors, and iterate",
+        "MCP protocol enables tool integrations (like Playwright)",
+        "Supports custom Skills for specialized workflows"
+      ],
+      "note": "Claude Code = Claude's brain + your dev environment + extensible tools"
+    },
+    {
+      "type": "content",
+      "badge": "Why Claude Code?",
+      "title": "The Autonomous Loop",
+      "subtitle": "Run → Fail → Diagnose → Fix → Retry",
+      "bullets": [
+        "Claude Code runs tests via Playwright MCP",
+        "When tests fail, it reads the error output",
+        "Uses MCP to investigate the failure in live browser",
+        "Fixes the code and runs tests again automatically"
+      ],
+      "note": "No copy-pasting errors back and forth - Claude sees and fixes in one flow"
+    },
+    {
+      "type": "content",
+      "badge": "Why Claude Code?",
+      "title": "Skills: Specialized Workflows",
+      "subtitle": "Custom commands for repeatable AI tasks",
+      "bullets": [
+        "/test-generator - Creates new tests via MCP exploration",
+        "/test-fixer - Debugs failures with live browser inspection",
+        "Skills define rules: 'NEVER generate code without MCP first'",
+        "Enforces workflow discipline AI would otherwise skip"
+      ],
+      "note": "Skills = guardrails that keep AI on the right path"
+    },
+    {
+      "type": "content",
+      "badge": "Why Claude Code?",
+      "title": "CLAUDE.md: Project Context",
+      "subtitle": "Persistent knowledge the AI loads every session",
+      "bullets": [
+        "Project structure, conventions, and patterns",
+        "Framework-specific rules (Vue 3, Stencil migration)",
+        "Testing requirements and selector strategies",
+        "Links to DATA_TESTID_MAP.md for consistent locators"
+      ],
+      "note": "AI starts every session already knowing your project - no re-explaining"
+    },
+    {
+      "type": "content",
+      "badge": "The Power Combo",
+      "title": "Claude Code + Playwright MCP",
+      "subtitle": "Agentic coding meets live browser automation",
+      "bullets": [
+        "Claude Code provides the autonomous execution loop",
+        "Playwright MCP provides real browser interaction",
+        "Together: AI that writes, runs, debugs, and fixes tests",
+        "Human reviews and curates - AI does the heavy lifting"
+      ],
+      "note": "Neither tool alone could do this - the integration is the magic"
+    },
+    {
+      "type": "content",
+      "badge": "The Secret Weapon",
+      "title": "Playwright MCP (Model Context Protocol)",
+      "subtitle": "AI doesn't guess - it actually uses the browser",
+      "bullets": [
+        "mcp__playwright__browser_navigate - Open real URLs",
+        "mcp__playwright__browser_snapshot - See actual DOM state",
+        "mcp__playwright__browser_click - Interact with elements",
+        "mcp__playwright__browser_evaluate - Inspect JavaScript state"
+      ],
+      "note": "The AI sees exactly what a user sees - no hallucinated selectors"
+    },
+    {
+      "type": "content",
+      "badge": "Why Playwright MCP?",
+      "title": "The Problem With Code Reading",
+      "subtitle": "AI reading source code creates false confidence",
+      "bullets": [
+        "Static code doesn't show dynamic rendering behavior",
+        "Can't see conditional elements or async loading",
+        "Component libraries abstract away actual DOM",
+        "AI 'understands' component but not what user sees"
+      ],
+      "note": "Reading code is like reading a recipe vs tasting the food - you miss the real experience"
+    },
+    {
+      "type": "content",
+      "badge": "Why Playwright MCP?",
+      "title": "Screenshot vs Accessibility Tree",
+      "subtitle": "MCP uses structured data, not visual guessing",
+      "bullets": [
+        "Screenshot-based: AI interprets pixels, guesses coordinates",
+        "MCP snapshot: Returns actual DOM accessibility tree",
+        "Every element has semantic role and test ID exposed",
+        "No 'click at x:234 y:567' - real locator strategies"
+      ],
+      "note": "Accessibility tree gives AI the same information Playwright uses internally"
+    },
+    {
+      "type": "content",
+      "badge": "Why Playwright MCP?",
+      "title": "Direct Tool Integration",
+      "subtitle": "AI uses Playwright APIs, not shell commands",
+      "bullets": [
+        "MCP exposes Playwright as AI-native tools",
+        "Browser state persists across tool calls",
+        "AI can chain navigate → snapshot → click → verify",
+        "Results flow back to AI for decision making"
+      ],
+      "note": "Not 'run this script' - actual interactive browser session the AI controls"
+    },
+    {
+      "type": "content",
+      "badge": "Why Playwright MCP?",
+      "title": "Deep Diagnostic Capabilities",
+      "subtitle": "AI can run JavaScript to inspect actual DOM state",
+      "bullets": [
+        "browser_evaluate: Query element positions, check viewport bounds",
+        "browser_console_messages: Catch JS errors blocking interactions",
+        "Diagnose 'element outside viewport' by checking getBoundingClientRect()",
+        "Find missing elements by testing multiple selector strategies"
+      ],
+      "note": "AI doesn't just see the page - it can interrogate the page like a developer with DevTools"
+    },
+    {
+      "type": "stats",
+      "badge": "MCP Advantage",
+      "title": "Live Browser > Guessing",
+      "subtitle": "Traditional AI test generation hallucinates selectors. MCP doesn't.",
+      "stats": [
+        { "value": "0%", "label": "Hallucinated Selectors" },
+        { "value": "100%", "label": "Verified Before Written" },
+        { "value": "Real", "label": "Browser State" }
+      ],
+      "note": "Every test step verified in live browser before code generation"
+    },
+    {
+      "type": "content",
+      "badge": "The Workflow",
+      "title": "Test Generation Process",
+      "subtitle": "A 4-step mandatory workflow",
+      "bullets": [
+        "Step 1: Navigate to app with MCP browser tools",
+        "Step 2: Take snapshots, identify elements from real DOM",
+        "Step 3: Execute interactions via MCP, verify each step works",
+        "Step 4: Generate TypeScript test code only after success"
+      ],
+      "note": "Never write test code without first proving it works in the browser"
+    },
+    {
+      "type": "content",
+      "badge": "Problem #1",
+      "title": "AI Skipping MCP",
+      "subtitle": "The most common failure mode",
+      "bullets": [
+        "AI would sometimes read code instead of using browser",
+        "Generates tests based on 'understanding' the component",
+        "Results in hallucinated selectors that don't exist",
+        "Tests fail immediately on first run"
+      ],
+      "note": "Solution: Skills with MANDATORY MCP workflow + explicit instructions: 'NEVER generate test code without first using Playwright MCP'"
+    },
+    {
+      "type": "content",
+      "badge": "Problem #2",
+      "title": "Redundant & Overlapping Tests",
+      "subtitle": "AI doesn't remember what it already tested",
+      "bullets": [
+        "Same workflow tested in multiple files",
+        "Slight variations that add no value",
+        "Bloated test suite = slower CI",
+        "Maintenance burden multiplied"
+      ],
+      "note": "Solution: Human review after every generation session. Delete duplicates, merge similar tests."
+    },
+    {
+      "type": "content",
+      "badge": "Problem #3",
+      "title": "Inconsistent Selectors",
+      "subtitle": "Every test used different locator strategies",
+      "bullets": [
+        "One test: page.locator('.btn-primary')",
+        "Another test: page.getByRole('button')",
+        "AI 'discovering' elements each time = inconsistency",
+        "Migration breaks tests unpredictably"
+      ],
+      "note": "Solution: DATA_TESTID_MAP.md - a single source of truth for all selectors"
+    },
+    {
+      "type": "content",
+      "badge": "Problem #4",
+      "title": "Not One-Shot Perfect",
+      "bullets": [
+        "AI would get stuck in loops or miss obvious issues",
+        "Had to open Playwright debugger to see what's happening",
+        "Manually inspect DOM when AI couldn't figure it out"
+      ],
+      "note": "Expect to step in regularly. Debug mode became a frequent companion."
+    },
+    {
+      "type": "content",
+      "badge": "When AI Gets Stuck",
+      "title": "Manual Intervention Examples",
+      "bullets": [
+        "Timing issues AI couldn't diagnose - needed debugger",
+        "Complex state dependencies between tests",
+        "Race conditions only visible in slow-mo mode",
+        "Shadow DOM boundaries AI couldn't pierce",
+        "API mocking that required manual setup"
+      ],
+      "note": "The 20% that AI couldn't handle often took 80% of the debugging time"
+    },
+    {
+      "type": "content",
+      "badge": "Real Issue #1",
+      "title": "Hardcoded Timers Instead of Conditions",
+      "subtitle": "AI's lazy approach to waiting",
+      "bullets": [
+        "AI would write: await page.waitForTimeout(5000)",
+        "Introduces flaky tests",
+        "Should use: await expect(element).toBeVisible()",
+        "Or: await page.waitForSelector('.loading', { state: 'hidden' })"
+      ],
+      "note": "Conditional waits are faster AND more reliable - AI needed explicit guidance to prefer them"
+    },
+    {
+      "type": "content",
+      "badge": "Real Issue #2",
+      "title": "Stencil/Vue Hybrid Detection",
+      "subtitle": "Components existed in both frameworks simultaneously",
+      "bullets": [
+        "During migration: some components Vue, some Stencil",
+        "Vue: light DOM, direct querySelector",
+        "Stencil: shadow DOM, need .shadowRoot access",
+        "Solution: Try Vue first, fallback to Stencil shadow DOM"
+      ],
+      "note": "Smart detection helper that tests multiple DOM paths before giving up"
+    },
+    {
+      "type": "content",
+      "badge": "The Fix",
+      "title": "Why DATA_TESTID_MAP Exists",
+      "bullets": [
+        "Every testable element mapped with its data-testid",
+        "Both Stencil AND Vue syntax examples",
+        "AI references this instead of 'discovering' selectors",
+        "Ensures all tests use the same locators"
+      ],
+      "note": "Without this, AI would invent new selectors every time - breaking migration compatibility"
+    },
+    {
+      "type": "content",
+      "badge": "Framework-Agnostic",
+      "title": "Locators Built to Survive Migration",
+      "subtitle": "Tests work on both Stencil and Vue versions",
+      "bullets": [
+        "NEVER use ve-* custom element selectors",
+        "Priority 1: getByRole() for buttons, inputs, etc.",
+        "Priority 2: getByTestId() for custom components",
+        "Priority 3: getByText() for static content"
+      ],
+      "note": "Same tests run before AND after Vue migration - zero rewrites needed"
+    },
+    {
+      "type": "content",
+      "badge": "Code Example",
+      "title": "What AI-Generated Tests Look Like",
+      "code": {
+        "language": "typescript",
+        "content": "test('should play voice preview', async ({ page }) => {\n  // AI navigated, clicked, verified via MCP first\n  await openTtsPanel(page);\n  \n  const voiceDropdown = page.getByTestId('voice-dropdown');\n  await expect(voiceDropdown).toBeVisible();\n  \n  const playButton = voiceDropdown\n    .getByTestId('voice-preview')\n    .locator('.voice-preview__play-button');\n  \n  await playButton.click();\n  await expect(playButton).toHaveClass(/--playing/);\n});"
+      },
+      "note": "Every locator was discovered and verified via live browser interaction"
+    },
+    {
+      "type": "content",
+      "badge": "Test Fixer Workflow",
+      "title": "AI Debugging in Action",
+      "subtitle": "When tests fail, AI investigates like a real developer",
+      "bullets": [
+        "Read error message and failing locator",
+        "Navigate to app with MCP browser tools",
+        "Reproduce failing steps interactively",
+        "Evaluate DOM state, check console errors",
+        "Fix code only after understanding root cause"
+      ],
+      "note": "No more 'try changing the timeout' - AI finds actual bugs"
+    },
+    {
+      "type": "content",
+      "badge": "Real Example",
+      "title": "Debugging a Dropdown Bug",
+      "subtitle": "AI found dropdown opening off-screen",
+      "bullets": [
+        "Error: 'element is outside of the viewport'",
+        "MCP Investigation: Evaluated element positions via JS",
+        "Finding: Options at top:854px but viewport only 836px",
+        "Root Cause: Dropdown always opens downward",
+        "Fix: Added upward opening when near bottom"
+      ],
+      "note": "AI didn't just fix the test - it fixed the actual component bug"
+    },
+    {
+      "type": "stats",
+      "badge": "Coverage",
+      "title": "What's Being Tested",
+      "stats": [
+        { "value": "17", "label": "Workflow Areas" },
+        { "value": "TTS", "label": "Voice Generation" },
+        { "value": "Media", "label": "Upload & Library" },
+        { "value": "Timeline", "label": "Editing Operations" }
+      ],
+      "note": "Avatar, shapes, text blocks, playback, transitions, and more"
+    },
+    {
+      "type": "content",
+      "badge": "Why It Worked",
+      "title": "Key Success Factors",
+      "bullets": [
+        "CLAUDE.md with project knowledge & rules",
+        "MCP browser tools for ground truth",
+        "DATA_TESTID_MAP for selector consistency",
+        "Human review to catch redundancy",
+        "Skills that enforce MCP-first workflow"
+      ],
+      "note": "AI had context, tools, constraints, AND human oversight"
+    },
+    {
+      "type": "stats",
+      "badge": "Results",
+      "title": "The Numbers Speak",
+      "stats": [
+        { "value": "100+", "label": "E2E Tests" },
+        { "value": "10+", "label": "Test Files" },
+        { "value": "0", "label": "Migration Breaks" },
+        { "value": "First", "label": "Ever Test Suite" }
+      ],
+      "note": "From zero coverage to comprehensive regression suite via AI"
+    },
+    {
+      "type": "title",
+      "title": "Questions?",
+      "subtitle": "Thank you for coming to our AI-Driven E2E testing story"
+    }
+  ]
+}
