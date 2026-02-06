@@ -22,7 +22,6 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
 }
 
 body {
@@ -38,7 +37,6 @@ body {
 .slide {
     min-height: 100vh;
     padding: clamp(2rem, 5vw, 4rem);
-    scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,6 +48,7 @@ body {
     max-width: 900px;
     width: 100%;
     text-align: center;
+    overflow: visible;
 }
 
 /* ===========================================
@@ -211,36 +210,66 @@ h1, .slide-title {
     margin-top: 0.5rem;
 }
 
+/* Side-by-side image + content layout */
+.image-content-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.image-side {
+    text-align: center;
+}
+
+.image-side .slide-image {
+    max-height: 55vh;
+    max-width: 100%;
+    margin: 0;
+}
+
+.content-side .bullets {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .image-content-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ===========================================
-   NAVIGATION DOTS
+   NAVIGATION DOTS (hidden)
    =========================================== */
 .nav-dots {
-    position: fixed;
-    right: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    z-index: 100;
+    display: none;
 }
 
 .nav-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--border);
-    cursor: pointer;
-    transition: all 0.3s ease;
+    display: none;
 }
 
-.nav-dot:hover {
-    background: var(--text-muted);
+/* ===========================================
+   SLIDE COUNTER
+   =========================================== */
+.slide-counter {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    z-index: 100;
 }
 
-.nav-dot.active {
-    background: var(--accent);
-    transform: scale(1.2);
+.slide-counter .current {
+    color: var(--accent);
+    font-weight: 600;
 }
 
 /* ===========================================
@@ -275,6 +304,400 @@ h1, .slide-title {
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
     margin: 0 0.2rem;
+}
+
+/* ===========================================
+   COMPARISON COLUMNS
+   =========================================== */
+.comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.comparison-column {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.comparison-header {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.comparison-item {
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    color: var(--text);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.comparison-item::before {
+    content: '•';
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+/* ===========================================
+   TIMELINE
+   =========================================== */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.timeline-marker {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.timeline-content {
+    flex: 1;
+    padding-bottom: 1rem;
+    border-left: 2px solid var(--border);
+    padding-left: 1rem;
+    margin-left: -1.25rem;
+}
+
+.timeline-item:last-child .timeline-content {
+    border-left: none;
+}
+
+.timeline-date {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* ===========================================
+   QUOTE
+   =========================================== */
+.quote {
+    background: var(--bg-card);
+    border-left: 4px solid var(--accent);
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 650px;
+    text-align: left;
+    border-radius: 0 12px 12px 0;
+}
+
+.quote-text {
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.quote-author {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--accent);
+    font-style: normal;
+}
+
+/* ===========================================
+   TABLE
+   =========================================== */
+.table-wrapper {
+    overflow-x: auto;
+    margin: 2rem 0;
+}
+
+.slide-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.slide-table th,
+.slide-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.slide-table th {
+    background: var(--bg-card);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.slide-table tr:hover td {
+    background: var(--bg-card);
+}
+
+/* ===========================================
+   DIAGRAM
+   =========================================== */
+.diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.diagram-node {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    min-width: 150px;
+    text-align: center;
+}
+
+.diagram-node-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.diagram-node-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.diagram-arrow {
+    color: var(--accent);
+    font-size: 1.5rem;
+    padding: 0 0.5rem;
+}
+
+/* ===========================================
+   TWO-COLUMN LAYOUT
+   =========================================== */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.column-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.two-column .bullet {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+/* ===========================================
+   CALLOUT / HIGHLIGHT BOX
+   =========================================== */
+.callout {
+    background: var(--accent-light);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 650px;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.callout.warning {
+    background: rgba(251, 191, 36, 0.15);
+    border-color: #fbbf24;
+}
+
+.callout.success {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: #22c55e;
+}
+
+.callout.info {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: #3b82f6;
+}
+
+.callout-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.callout-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.callout-text {
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+/* ===========================================
+   FEATURE GRID
+   =========================================== */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.feature {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: border-color 0.3s ease;
+}
+
+.feature:hover {
+    border-color: var(--accent);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.feature-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.feature-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ===========================================
+   CODE COMPARISON
+   =========================================== */
+.code-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.code-panel {
+    text-align: left;
+}
+
+.code-panel-header {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border-radius: 8px 8px 0 0;
+    border: 1px solid var(--border);
+    border-bottom: none;
+}
+
+.code-panel .code-block {
+    margin: 0;
+    border-radius: 0 0 8px 8px;
+    white-space: pre-wrap;
+    font-size: 0.85rem;
+}
+
+/* ===========================================
+   STEPS / PROGRESS INDICATOR
+   =========================================== */
+.steps {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.step.active {
+    opacity: 1;
+    border-color: var(--accent);
+    background: var(--accent-light);
+}
+
+.step.completed {
+    opacity: 1;
+}
+
+.step-number {
+    width: 24px;
+    height: 24px;
+    background: var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.step.active .step-number,
+.step.completed .step-number {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+.step-label {
+    font-size: 0.9rem;
 }
 
 /* ===========================================

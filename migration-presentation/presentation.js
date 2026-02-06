@@ -20,6 +20,7 @@ class SlidePresentation {
             this.bindEvents();
             this.observeSlides();
             this.updateProgress();
+            this.updateSlideCounter();
         } catch (error) {
             this.showError(error);
         }
@@ -78,8 +79,24 @@ class SlidePresentation {
             content.push(`<p class="subtitle reveal">${slide.subtitle}</p>`);
         }
 
-        // Image
-        if (slide.image) {
+        // Image (side-by-side with bullets if both exist)
+        if (slide.image && slide.bullets) {
+            content.push(`
+                <div class="image-content-row reveal">
+                    <div class="image-side">
+                        <img src="${slide.image}" alt="${slide.imageAlt || ''}" class="slide-image">
+                        ${slide.imageCaption ? `<p class="image-caption">${slide.imageCaption}</p>` : ''}
+                    </div>
+                    <div class="content-side">
+                        <div class="bullets">
+                            ${slide.bullets.map(bullet => `<div class="bullet">${bullet}</div>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `);
+            // Mark bullets as handled
+            slide._bulletsHandled = true;
+        } else if (slide.image) {
             content.push(`
                 <div class="reveal">
                     <img src="${slide.image}" alt="${slide.imageAlt || ''}" class="slide-image">
@@ -102,8 +119,8 @@ class SlidePresentation {
             `);
         }
 
-        // Bullets
-        if (slide.bullets) {
+        // Bullets (skip if already handled by image-content-row)
+        if (slide.bullets && !slide._bulletsHandled) {
             content.push(`
                 <div class="bullets reveal">
                     ${slide.bullets.map(bullet => `
@@ -129,6 +146,159 @@ class SlidePresentation {
             `);
         }
 
+        // Comparison columns (before/after, old/new)
+        if (slide.columns) {
+            content.push(`
+                <div class="comparison reveal">
+                    ${slide.columns.map(col => `
+                        <div class="comparison-column">
+                            <div class="comparison-header">${col.header}</div>
+                            <div class="comparison-items">
+                                ${col.items.map(item => `<div class="comparison-item">${item}</div>`).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `);
+        }
+
+        // Timeline
+        if (slide.timeline) {
+            content.push(`
+                <div class="timeline reveal">
+                    ${slide.timeline.map((item, i) => `
+                        <div class="timeline-item">
+                            <div class="timeline-marker">${i + 1}</div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">${item.date || ''}</div>
+                                <div class="timeline-title">${item.title}</div>
+                                ${item.description ? `<div class="timeline-desc">${item.description}</div>` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `);
+        }
+
+        // Quote
+        if (slide.quote) {
+            content.push(`
+                <blockquote class="quote reveal">
+                    <div class="quote-text">"${slide.quote.text}"</div>
+                    ${slide.quote.author ? `<div class="quote-author">— ${slide.quote.author}</div>` : ''}
+                </blockquote>
+            `);
+        }
+
+        // Table
+        if (slide.table) {
+            content.push(`
+                <div class="table-wrapper reveal">
+                    <table class="slide-table">
+                        <thead>
+                            <tr>${slide.table.headers.map(h => `<th>${h}</th>`).join('')}</tr>
+                        </thead>
+                        <tbody>
+                            ${slide.table.rows.map(row => `
+                                <tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `);
+        }
+
+        // Diagram with multiple nodes
+        if (slide.diagram) {
+            content.push(`
+                <div class="diagram reveal">
+                    ${slide.diagram.nodes.map((node, i) => `
+                        <div class="diagram-node">
+                            <div class="diagram-node-label">${node.label}</div>
+                            ${node.description ? `<div class="diagram-node-desc">${node.description}</div>` : ''}
+                        </div>
+                        ${i < slide.diagram.nodes.length - 1 ? '<div class="diagram-arrow">→</div>' : ''}
+                    `).join('')}
+                </div>
+            `);
+        }
+
+        // Two-column layout
+        if (slide.twoColumn) {
+            content.push(`
+                <div class="two-column reveal">
+                    <div class="column">
+                        ${slide.twoColumn.left.title ? `<div class="column-title">${slide.twoColumn.left.title}</div>` : ''}
+                        ${slide.twoColumn.left.bullets ? slide.twoColumn.left.bullets.map(b => `<div class="bullet">${b}</div>`).join('') : ''}
+                        ${slide.twoColumn.left.content || ''}
+                    </div>
+                    <div class="column">
+                        ${slide.twoColumn.right.title ? `<div class="column-title">${slide.twoColumn.right.title}</div>` : ''}
+                        ${slide.twoColumn.right.bullets ? slide.twoColumn.right.bullets.map(b => `<div class="bullet">${b}</div>`).join('') : ''}
+                        ${slide.twoColumn.right.content || ''}
+                    </div>
+                </div>
+            `);
+        }
+
+        // Highlight box / callout
+        if (slide.callout) {
+            content.push(`
+                <div class="callout reveal ${slide.callout.type || ''}">
+                    ${slide.callout.icon ? `<div class="callout-icon">${slide.callout.icon}</div>` : ''}
+                    <div class="callout-content">
+                        ${slide.callout.title ? `<div class="callout-title">${slide.callout.title}</div>` : ''}
+                        <div class="callout-text">${slide.callout.text}</div>
+                    </div>
+                </div>
+            `);
+        }
+
+        // Icon/feature grid
+        if (slide.features) {
+            content.push(`
+                <div class="features reveal">
+                    ${slide.features.map(f => `
+                        <div class="feature">
+                            <div class="feature-icon">${f.icon || '●'}</div>
+                            <div class="feature-title">${f.title}</div>
+                            ${f.description ? `<div class="feature-desc">${f.description}</div>` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            `);
+        }
+
+        // Code comparison (side by side)
+        if (slide.codeCompare) {
+            content.push(`
+                <div class="code-compare reveal">
+                    <div class="code-panel">
+                        <div class="code-panel-header">${slide.codeCompare.left.title}</div>
+                        <pre class="code-block">${slide.codeCompare.left.code}</pre>
+                    </div>
+                    <div class="code-panel">
+                        <div class="code-panel-header">${slide.codeCompare.right.title}</div>
+                        <pre class="code-block">${slide.codeCompare.right.code}</pre>
+                    </div>
+                </div>
+            `);
+        }
+
+        // Progress/steps indicator
+        if (slide.steps) {
+            content.push(`
+                <div class="steps reveal">
+                    ${slide.steps.map((step, i) => `
+                        <div class="step ${step.active ? 'active' : ''} ${step.completed ? 'completed' : ''}">
+                            <div class="step-number">${i + 1}</div>
+                            <div class="step-label">${step.label}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `);
+        }
+
         // Note
         if (slide.note) {
             content.push(`<p class="note reveal">${slide.note}</p>`);
@@ -144,10 +314,15 @@ class SlidePresentation {
     }
 
     createNavDots() {
-        const container = document.getElementById('navDots');
-        container.innerHTML = this.slides.map((_, index) =>
-            `<div class="nav-dot" data-index="${index}"></div>`
-        ).join('');
+        // Nav dots disabled - using slide counter instead
+    }
+
+    updateSlideCounter() {
+        const counter = document.getElementById('slideCounter');
+        if (counter) {
+            counter.querySelector('.current').textContent = this.currentSlide + 1;
+            counter.querySelector('.total').textContent = this.slides.length;
+        }
     }
 
     bindEvents() {
@@ -162,13 +337,6 @@ class SlidePresentation {
             }
         });
 
-        // Nav dot clicks
-        document.querySelectorAll('.nav-dot').forEach(dot => {
-            dot.addEventListener('click', () => {
-                this.goToSlide(parseInt(dot.dataset.index));
-            });
-        });
-
         // Scroll tracking
         window.addEventListener('scroll', () => {
             this.updateProgress();
@@ -181,10 +349,10 @@ class SlidePresentation {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                     this.currentSlide = parseInt(entry.target.dataset.index);
-                    this.updateActiveDot();
+                    this.updateSlideCounter();
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3 });
 
         document.querySelectorAll('.slide').forEach(slide => {
             observer.observe(slide);
@@ -199,11 +367,6 @@ class SlidePresentation {
         }
     }
 
-    updateActiveDot() {
-        document.querySelectorAll('.nav-dot').forEach((dot, i) => {
-            dot.classList.toggle('active', i === this.currentSlide);
-        });
-    }
 
     updateProgress() {
         const scrollTop = window.scrollY;

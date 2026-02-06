@@ -20,7 +20,7 @@
       "subtitle": "A full editor migration with shared logic refactor, UI rebuild, and brand-new E2E testing suite",
       "stats": [
         { "value": "32", "label": "Days" },
-        { "value": "267", "label": "Vue Components" },
+        { "value": "~750", "label": "Dev Hours Saved" },
         { "value": "140", "label": "E2E Tests" }
       ],
       "flow": {
@@ -30,15 +30,542 @@
     },
     {
       "type": "content",
-      "badge": "The Mission",
-      "title": "What We Delivered",
+      "badge": "Agenda",
+      "title": "What You Can Expect",
+      "steps": [
+        { "label": "Why Migrate", "completed": true },
+        { "label": "First Attempt", "completed": true },
+        { "label": "New Approach", "completed": true },
+        { "label": "Process", "completed": true },
+        { "label": "Challenges", "completed": true },
+        { "label": "Results", "completed": true }
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "The Beginning",
+      "title": "Why We Started with Stencil",
+      "subtitle": "Product launch required speed over perfection",
       "bullets": [
-        "Full migration from Stencil to Vue",
-        "Shared logic refactor & extraction",
-        "Complete UI rebuild",
-        "Brand-new E2E testing suite (first ever!)"
+        "Ready-to-implement UI/SDK from the Rendley team accelerated our start",
+        "Crucial for validating the product quickly at launch",
+        "After 3 months, we completely overhauled much of the UI and codebase",
+        "The choice made sense — fast validation was the priority"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Technical Limitations",
+      "title": "Problems with Stencil",
+      "twoColumn": {
+        "left": {
+          "title": "Integration Blockers",
+          "bullets": [
+            "Unable to leverage Easygenerator UI Kit",
+            "Can't use Shared Modules",
+            "Shadow DOM blocked product tours",
+            "No types for web components"
+          ]
+        },
+        "right": {
+          "title": "Code Quality Issues",
+          "bullets": [
+            "No static code analysis",
+            "Heavy window object pollution",
+            "No component usage tracking",
+            "No refactoring support"
+          ]
+        }
+      }
+    },
+    {
+      "type": "content",
+      "badge": "Developer Experience",
+      "title": "Day-to-Day Pain Points",
+      "features": [
+        { "icon": "🔧", "title": "No Dev Tools", "description": "No dedicated debugging tools" },
+        { "icon": "🔄", "title": "Broken HMR", "description": "Full page reloads required" },
+        { "icon": "📝", "title": "Poor IDE Support", "description": "No code completion" },
+        { "icon": "📚", "title": "Small Community", "description": "Fewer resources & tutorials" }
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Scaling Concerns",
+      "title": "Why We Couldn't Stay",
+      "bullets": [
+        "Onboarding new team members was challenging — Stencil-specific knowledge required",
+        "StencilJS-specific quirks (e.g., performance issues with portal component)",
+        "Framework evolution slower than React/Vue/Angular",
+        "Limited ecosystem compared to mainstream frameworks"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "First Attempt",
+      "title": "The First Migration (Deprecated)",
+      "subtitle": "A 2-month effort with a complicated monorepo approach",
+      "image": "images/best-meme-templates-01.webp",
+      "imageAlt": "Pepe Silvia conspiracy board meme",
+      "imageCaption": "Our first migration plan",
+      "bullets": [
+        "Key insight: Stencil components work inside Vue",
+        "Plan: Migrate ~20% with 6-person team",
+        "Monorepo: 5 packages, 2 apps running",
+        "Goal: Root + first layer, then continue in Vue"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "First Attempt",
+      "title": "The Monorepo Setup",
+      "table": {
+        "headers": ["Package", "Purpose"],
+        "rows": [
+          ["services", "Shared services"],
+          ["stores", "State management"],
+          ["utils & types", "Utilities and TypeScript types"],
+          ["providers", "Dependency injection"],
+          ["apps (stencil, vue)", "Both applications running"]
+        ]
+      },
+      "note": "Complex setup with many moving parts — lots of overhead maintaining two apps"
+    },
+    {
+      "type": "content",
+      "badge": "What Happened",
+      "title": "First Attempt: Interrupted",
+      "callout": {
+        "type": "warning",
+        "icon": "⚠️",
+        "title": "Business requirements intervened",
+        "text": "We stopped the migration temporarily. All progress became outdated — syncing would take more time than we had."
+      },
+      "bullets": [
+        "Big risk — Complex setup with many moving parts",
+        "Not efficient — Lots of overhead maintaining two apps",
+        "Time constraints — Limited resources forced this approach"
       ],
-      "note": "Reduced technical risk, improved developer velocity, added automated guardrails"
+      "note": "But we deeply understood the architecture, paving the way for a better approach"
+    },
+    {
+      "type": "content",
+      "badge": "The Pivot",
+      "title": "A New Approach",
+      "quote": {
+        "text": "Migrate first, refactor later",
+        "author": "The principle that changed everything"
+      },
+      "bullets": [
+        "5 days to POC the new plan",
+        "Pure syntax conversion first",
+        "Then refactor architecture debt",
+        "Previous attempt tried both — that was the inefficiency"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Risk Assessment",
+      "title": "The Risk We Faced",
+      "image": "images/boy-it-was-beautiful.png",
+      "imageAlt": "Tweet: Claude refactored my entire codebase. None of it worked. But boy was it beautiful.",
+      "imageCaption": "What happens without careful planning",
+      "bullets": [
+        "POC showed we needed a well-defined approach",
+        "Each step must be verified before proceeding",
+        "App must remain functional throughout"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Risk Mitigation",
+      "title": "How We Made It Possible",
+      "features": [
+        { "icon": "📋", "title": "Careful Planning", "description": "Layer-by-layer migration strategy" },
+        { "icon": "🧪", "title": "E2E Tests", "description": "Automated regression for each layer" },
+        { "icon": "🔄", "title": "Incremental", "description": "Vue app always running & validated" },
+        { "icon": "✅", "title": "Verification", "description": "Each phase verified before proceeding" }
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "AI-Assisted",
+      "title": "Leveraging AI Tools",
+      "subtitle": "From GitHub Copilot to Claude Code",
+      "image": "images/reddit-meme.png",
+      "imageAlt": "Haha Claude go brrrr meme",
+      "imageCaption": "Our actual migration strategy",
+      "bullets": [
+        "Started with Copilot, needed more power",
+        "Handle long-running tasks",
+        "Run parallel agents",
+        "Read large codebases quickly"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "AI-Assisted",
+      "title": "Claude Code Setup",
+      "image": "images/claude-code-meme.png",
+      "imageAlt": "Claude Code in action",
+      "imageCaption": "The AI pair programmer",
+      "twoColumn": {
+        "left": {
+          "title": "Sonnet 4.5 (Execution)",
+          "bullets": [
+            "Writing code",
+            "Making changes",
+            "Fast iterations",
+            "Component conversion"
+          ]
+        },
+        "right": {
+          "title": "Opus 4.5 (Planning)",
+          "bullets": [
+            "Architecture decisions",
+            "Migration strategies",
+            "Complex planning",
+            "Dependency analysis"
+          ]
+        }
+      },
+      "note": "Analyzed entire codebase, understood dependencies, executed changes across multiple files"
+    },
+    {
+      "type": "content",
+      "badge": "The Goal",
+      "title": "Primary Objective",
+      "subtitle": "Pure syntax conversion from Stencil to Vue",
+      "bullets": [
+        "Convert Stencil syntax to Vue syntax without changing functionality",
+        "Fix framework-specific quirks that arise during conversion",
+        "Address UI quirks and style differences (Shadow DOM → Light DOM)",
+        "Follow a solid, validated plan with clear execution steps"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Success Criteria",
+      "title": "How We Measured Success",
+      "features": [
+        { "icon": "🎯", "title": "Same Behavior", "description": "App works exactly the same" },
+        { "icon": "✅", "title": "All Features", "description": "Work identically in Vue" },
+        { "icon": "🧪", "title": "E2E Validated", "description": "Each step tested" },
+        { "icon": "🛡️", "title": "No Regressions", "description": "Zero bugs introduced" }
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Why Vue",
+      "title": "Why Vue Was Chosen",
+      "image": "images/nihilist-penguin-262307171-16x9_0.avif",
+      "imageAlt": "Penguin meme",
+      "imageCaption": "Vue just made sense",
+      "bullets": [
+        "Ecosystem Reuse — Years of components, collaboration features, shared modules",
+        "Vue SDKs — Many utilities are Vue-specific",
+        "Performance — Critical for heavy video editing",
+        "Team Efficiency — Combines Angular + React concepts"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "The Mindset",
+      "title": "Two-Phase Approach",
+      "steps": [
+        { "label": "Phase 1: Logic Extraction", "active": true },
+        { "label": "Phase 2: Component Migration" }
+      ],
+      "subtitle": "Extract ~103 non-UI files into @easyvideo/shared",
+      "table": {
+        "headers": ["Group", "Content", "Files", "Risk"],
+        "rows": [
+          ["G1", "Foundation (types, enums, config)", "18", "Low"],
+          ["G2", "Utilities", "20", "Low"],
+          ["G3-G4", "Services (no SDK → moderate deps)", "20", "Medium"],
+          ["G5", "Rendley SDK Core", "5", "CRITICAL"],
+          ["G6", "Event Bridge", "1", "High"],
+          ["G7", "Store Logic", "16", "Medium"],
+          ["G8", "SDK Import Cleanup", "~51", "Medium"]
+        ]
+      }
+    },
+    {
+      "type": "content",
+      "badge": "The Mindset",
+      "title": "Component Migration Layers",
+      "steps": [
+        { "label": "Phase 1: Logic Extraction", "completed": true },
+        { "label": "Phase 2: Component Migration", "active": true }
+      ],
+      "subtitle": "138 Stencil components → Vue, layer by layer",
+      "table": {
+        "headers": ["Layer", "Description", "Components", "Risk"],
+        "rows": [
+          ["L0", "Root", "1", "High"],
+          ["L1", "Direct Children", "7", "Medium"],
+          ["L1b", "Layout Internals (Navbar, Sidebar)", "2", "Medium"],
+          ["L2", "Major Sections (Composition, Timeline)", "4", "Medium-High"],
+          ["L3", "Module Internals", "~45", "Medium"],
+          ["L4", "Deep Components", "~64", "Low"],
+          ["L5", "UI Primitives", "~20", "Low"]
+        ]
+      }
+    },
+    {
+      "type": "content",
+      "badge": "Core Principle",
+      "title": "Vue App Always Running",
+      "callout": {
+        "type": "success",
+        "icon": "✅",
+        "title": "The Golden Rule",
+        "text": "Vue components can consume Stencil components, but NOT the reverse. Top-down migration, layer by layer."
+      },
+      "bullets": [
+        "At each layer, Vue wraps Stencil children",
+        "Children migrated until all are Vue",
+        "Each phase verified before proceeding",
+        "App functional throughout entire migration"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Framework Research",
+      "title": "Key Differences Identified",
+      "subtitle": "Used Context7 MCP to map Stencil → Vue patterns",
+      "table": {
+        "headers": ["Stencil", "Vue", "Notes"],
+        "rows": [
+          ["connectedCallback", "onMounted", "Component attached to DOM"],
+          ["disconnectedCallback", "onUnmounted", "Component removed"],
+          ["@Prop()", "defineProps", "Component properties"],
+          ["@Event()", "defineEmits", "Custom events"],
+          ["@State()", "ref() / reactive()", "Internal state"],
+          ["Shadow DOM", "Light DOM", "CSS scoping differs"]
+        ]
+      }
+    },
+    {
+      "type": "content",
+      "badge": "Migration Rules",
+      "title": "Consistent Conversion Rules",
+      "bullets": [
+        "Move code as-is — No refactoring during migration, syntax conversion only",
+        "Match file structure exactly — Vue directory paths mirror Stencil paths exactly",
+        "Respect lifecycle differences — Map Stencil lifecycles to Vue equivalents",
+        "Match CSS scoping — If Stencil has no scoped: true, Vue uses &lt;style&gt; without scoped",
+        "Use wrapper components — Always import from @/stencil-components, never raw &lt;ve-*&gt; tags"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Maximizing AI",
+      "title": "Utilizing Everything Available",
+      "features": [
+        { "icon": "📜", "title": "Rules", "description": "Detailed migration rules in CLAUDE.md" },
+        { "icon": "🛠️", "title": "Skills", "description": "Reusable prompts for repetitive tasks" },
+        { "icon": "📝", "title": "Tasklists", "description": "Clear acceptance criteria & verification" },
+        { "icon": "🤖", "title": "Parallel Agents", "description": "Multiple agents on independent components" },
+        { "icon": "📊", "title": "Decision Logs", "description": "Document choices for consistency" },
+        { "icon": "🧠", "title": "Memory Files", "description": "Track learnings across sessions" }
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Custom Agents",
+      "title": "Custom Agent Architecture",
+      "subtitle": "Skills (reusable agent prompts) for systematic migration",
+      "columns": [
+        {
+          "header": "stencil-to-vue-migration",
+          "items": [
+            "Analyze Stencil source",
+            "Create Vue component",
+            "Copy styles correctly",
+            "Update all consumers"
+          ]
+        },
+        {
+          "header": "vue-migration-validation",
+          "items": [
+            "Syntax: props, events, state, methods",
+            "Style: CSS scoping, class coverage",
+            "Consumers: all files updated",
+            "Build: type checking passes"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Orchestration",
+      "title": "Agent Orchestration Flow",
+      "diagram": {
+        "nodes": [
+          { "label": "Orchestrator", "description": "Plan → Tasks, select E2E tests" },
+          { "label": "Migration Agent", "description": "Convert components in parallel" },
+          { "label": "Validation Agent", "description": "Verify syntax, style, consumers" },
+          { "label": "E2E Tests", "description": "Run layer regression tests" }
+        ]
+      },
+      "note": "Main agent orchestrates while sub-agents focus on one responsibility each"
+    },
+    {
+      "type": "content",
+      "badge": "Key Deliverables",
+      "title": "Phase 1 Results",
+      "bullets": [
+        "Framework-agnostic business logic in @easyvideo/shared package",
+        "SDK singleton (getEngine()) exported from shared",
+        "RendleyBridge with callback injection pattern",
+        "Zero Engine.getInstance() calls in app code"
+      ],
+      "callout": {
+        "type": "success",
+        "icon": "✅",
+        "text": "Both Stencil and Vue can now consume the same business logic"
+      }
+    },
+    {
+      "type": "content",
+      "badge": "Issue #1",
+      "title": "Shadow DOM vs Light DOM",
+      "subtitle": "The Core Difference",
+      "twoColumn": {
+        "left": {
+          "title": "Stencil (Shadow DOM)",
+          "bullets": [
+            "Encapsulated shadow trees",
+            "element.shadowRoot exists",
+            "Styles isolated in boundary",
+            "DOM queries scoped to shadow"
+          ]
+        },
+        "right": {
+          "title": "Vue (Light DOM)",
+          "bullets": [
+            "Renders directly to document",
+            "No shadow root exists",
+            "Styles cascade globally",
+            "DOM queries scoped to container"
+          ]
+        }
+      },
+      "callout": {
+        "type": "warning",
+        "icon": "⚠️",
+        "text": "Problem: Codebase expected ShadowRoot object, but Vue has none"
+      }
+    },
+    {
+      "type": "content",
+      "badge": "Solution #1",
+      "title": "LightDomAdapter",
+      "subtitle": "Wrapper providing same method signatures as ShadowRoot",
+      "codeCompare": {
+        "left": {
+          "title": "ShadowRoot API",
+          "code": "shadowRoot.getElementById(id)\nshadowRoot.querySelector(sel)\nshadowRoot.appendChild(node)\nshadowRoot.dispatchEvent(evt)"
+        },
+        "right": {
+          "title": "LightDomAdapter",
+          "code": "element.querySelector(`#${id}`)\nelement.querySelector(sel)\nelement.appendChild(node)\nelement.dispatchEvent(evt)"
+        }
+      },
+      "note": "Same interface, different implementation — seamless transition"
+    },
+    {
+      "type": "content",
+      "badge": "Issue #2",
+      "title": "Module Duplication",
+      "subtitle": "Multiple Engine Singletons",
+      "callout": {
+        "type": "warning",
+        "icon": "🐛",
+        "title": "Symptom",
+        "text": "\"Cannot find the parent of the clip {clipId: '...', layerId: '...'}\" error"
+      },
+      "bullets": [
+        "Root Cause: Stencil bundled its own copies of @easyvideo/shared, @rendley/sdk, and mobx",
+        "Vue initialized Engine singleton, Stencil used its own uninitialized instance",
+        "Two different Engine instances = state completely out of sync"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Solution #2",
+      "title": "Externalize Shared Packages",
+      "code": "// stencil.config.ts - Custom Rollup plugin\nconst externalPackages = [\n  \"@easyvideo/shared\",\n  \"@rendley/sdk\",\n  \"mobx\"\n];",
+      "bullets": [
+        "Custom Rollup plugin in stencil.config.ts",
+        "Ensures single instance of singletons across both frameworks",
+        "Vue initializes Engine, Stencil components consume same instance"
+      ]
+    },
+    {
+      "type": "content",
+      "badge": "Issue #3",
+      "title": "Circular Dependencies",
+      "subtitle": "Build failures and runtime errors",
+      "bullets": [
+        "Some stores and services had bidirectional dependencies",
+        "Worked in Stencil's bundling but broke when extracting to shared package"
+      ],
+      "callout": {
+        "type": "info",
+        "icon": "💡",
+        "title": "Solutions",
+        "text": "Callback injection (pass deps during init) + Re-export pattern (intermediate modules break cycle)"
+      },
+      "note": "Temporary patterns to unblock migration — can be refactored later"
+    },
+    {
+      "type": "content",
+      "badge": "Issue #4",
+      "title": "Direct DOM Manipulation",
+      "subtitle": "Code expecting elements that weren't in the DOM",
+      "bullets": [
+        "Several parts relied on direct DOM manipulation with &lt;ve-*&gt; custom elements",
+        "Assumption: Web components always registered and present",
+        "Vue's rendering model doesn't guarantee elements exist at same lifecycle points"
+      ],
+      "callout": {
+        "type": "success",
+        "icon": "✅",
+        "title": "Solution",
+        "text": "Check element existence before manipulation + ensure custom elements registered before Vue mounts"
+      }
+    },
+    {
+      "type": "content",
+      "badge": "Issue #5",
+      "title": "MobX vs Vue Reactivity",
+      "subtitle": "State changes not triggering re-renders",
+      "twoColumn": {
+        "left": {
+          "title": "MobX",
+          "bullets": [
+            "Requires full mutation",
+            "Replace entire object/array",
+            "Observable-based tracking"
+          ]
+        },
+        "right": {
+          "title": "Vue",
+          "bullets": [
+            "Proxy-based tracking",
+            "Property-level detection",
+            "Ref/reactive primitives"
+          ]
+        }
+      },
+      "callout": {
+        "type": "success",
+        "icon": "✅",
+        "title": "Solution",
+        "text": "Used mobx-vue-lite with &lt;Observer&gt; component wrapper to bridge reactivity systems"
+      }
     },
     {
       "type": "stats",
@@ -56,84 +583,95 @@
       "badge": "New Capability",
       "title": "E2E Testing Suite",
       "subtitle": "First time EasyVideo has automated end-to-end regression coverage",
-      "bullets": [
-        "Framework: Playwright",
-        "17 E2E test files",
-        "140 test cases covering critical workflows",
-        "Scenarios previously validated only via manual QA"
+      "stats": [
+        { "value": "Playwright", "label": "Framework" },
+        { "value": "17", "label": "Test Files" },
+        { "value": "140", "label": "Test Cases" }
       ],
-      "note": "Acts as guardrails to close the feedback loop during development"
+      "bullets": [
+        "Covers critical editor workflows",
+        "Scenarios previously validated only via manual QA",
+        "Acts as guardrails during development",
+        "Enables safer refactors going forward"
+      ]
     },
     {
       "type": "content",
       "badge": "Timeline",
       "title": "32 Days Start to Finish",
-      "subtitle": "Dec 22, 2025 → Jan 23, 2026",
-      "bullets": [
-        "Phase 1 (Dec 24-26): 16 shared stores + core services extracted",
-        "Phase 2 (Dec 30-Jan 22): 5 UI layers migrated to Vue",
-        "Cleanup (Jan 22-23): Old framework removal & cleanup"
-      ],
-      "note": "1 week of planning before execution began"
+      "timeline": [
+        { "date": "Week 0", "title": "Planning", "description": "Architecture, strategy, rules definition" },
+        { "date": "Dec 24-26", "title": "Phase 1: Logic", "description": "16 shared stores + core services extracted" },
+        { "date": "Dec 30-Jan 22", "title": "Phase 2: Components", "description": "5 UI layers migrated to Vue" },
+        { "date": "Jan 22-23", "title": "Cleanup", "description": "Old framework removal & final verification" }
+      ]
     },
     {
-      "type": "content",
-      "badge": "The Secret Sauce",
-      "title": "How We Did It",
-      "bullets": [
-        "Claude Code as AI pair programmer",
-        "CLAUDE.md with project knowledge & architecture rules",
-        "Custom skills for repetitive migration tasks",
-        "Strict domain-bounded architecture patterns"
+      "type": "comparison",
+      "badge": "Comparison",
+      "title": "Old vs New Approach",
+      "columns": [
+        {
+          "header": "First Attempt ❌",
+          "items": [
+            "6 engineers × 2 months",
+            "~800-1280 dev hours estimated",
+            "Migrate + refactor simultaneously",
+            "5 packages, 2 apps running",
+            "Manual QA only",
+            "Interrupted, progress outdated"
+          ]
+        },
+        {
+          "header": "New Approach ✅",
+          "items": [
+            "2 engineers × 32 days",
+            "~256 dev hours actual",
+            "Migrate first, refactor later",
+            "Single app, gradual replacement",
+            "140 E2E tests built in",
+            "Completed successfully"
+          ]
+        }
       ],
-      "image": "images/reddit-meme.png",
-      "imageAlt": "Haha Claude go brrrr meme",
-      "imageCaption": "Our actual migration strategy"
+      "note": "~4× more efficient — AI-assisted execution made the difference"
     },
     {
       "type": "stats",
-      "badge": "Industry Comparison",
-      "title": "4-5× Faster Than Normal",
-      "subtitle": "Comparable migrations typically take 5-8 months with E2E",
+      "badge": "Efficiency Gains",
+      "title": "4× More Efficient",
+      "subtitle": "Estimated vs actual execution",
+      "image": "images/best-meme-templates-18.avif",
+      "imageAlt": "Success meme",
+      "imageCaption": "When AI actually works",
       "stats": [
-        { "value": "5-8", "label": "Months (Industry)" },
-        { "value": "32", "label": "Days (Us)" },
-        { "value": "4-5×", "label": "Faster" }
+        { "value": "~1000", "label": "Hours (Estimated)" },
+        { "value": "~256", "label": "Hours (Actual)" },
+        { "value": "4×", "label": "More Efficient" }
       ],
-      "note": "With tests built in, not added later"
-    },
-    {
-      "type": "content",
-      "badge": "E2E Benefits",
-      "title": "Why Testing Matters",
-      "bullets": [
-        "Automated regression for critical editor workflows",
-        "Covers scenarios previously manual-only",
-        "Enables safer refactors going forward",
-        "Faster future iteration with confidence"
-      ],
-      "note": "Guardrails that didn't exist before"
+      "note": "2 engineers + AI vs 6 engineers traditional approach"
     },
     {
       "type": "content",
       "badge": "The Team",
       "title": "Who Made It Happen",
-      "bullets": [
-        "Ahmed Maher — Architecture, execution plan, core logic migration, UI delivery & cleanup",
-        "Omar Kamal — E2E test infrastructure, migration validation, long-term stability"
+      "features": [
+        { "icon": "👨‍💻", "title": "Ahmed Maher", "description": "Architecture, execution plan, core logic migration, UI delivery & cleanup" },
+        { "icon": "👨‍💻", "title": "Omar Kamal", "description": "E2E test infrastructure, migration validation, long-term stability" }
       ],
-      "note": "Two engineers. 32 days. One massive migration."
+      "note": "2 engineers completed the full migration. ~750 dev hours saved."
     },
     {
       "type": "content",
       "badge": "Impact",
       "title": "Why This Matters",
-      "bullets": [
-        "Removes legacy framework constraints",
-        "Establishes modern, scalable Vue foundation",
-        "Introduces automated regression testing (first time!)",
-        "Reduces future change risk and QA overhead"
-      ]
+      "features": [
+        { "icon": "🔓", "title": "No Legacy Constraints", "description": "Free from Stencil limitations" },
+        { "icon": "🏗️", "title": "Modern Foundation", "description": "Scalable Vue architecture" },
+        { "icon": "🧪", "title": "Automated Testing", "description": "First time ever for EasyVideo" },
+        { "icon": "🛡️", "title": "Reduced Risk", "description": "Less QA overhead going forward" }
+      ],
+      "note": "A faster, safer, and more maintainable editor platform moving forward"
     },
     {
       "type": "stats",
@@ -142,15 +680,16 @@
       "stats": [
         { "value": "267", "label": "Vue Components" },
         { "value": "140", "label": "E2E Tests" },
-        { "value": "32", "label": "Days" },
+        { "value": "~750", "label": "Dev Hours Saved" },
         { "value": "0", "label": "Prod Incidents" }
       ]
     },
     {
       "type": "title",
-      "title": "Questions?",
-      "subtitle": "A faster, safer, and more maintainable editor platform moving forward",
-      "note": "Thank you for coming to our migration story"
+      "badge": "Up Next",
+      "title": "E2E Testing Deep Dive",
+      "subtitle": "Omar Kamal will walk us through the E2E testing infrastructure built with Playwright MCP",
+      "note": "From zero automated tests to 140 E2E test cases"
     }
   ]
 }

@@ -168,7 +168,7 @@ Draw the dependency diagram of the entire component tree (138 components total).
 | L1b   | Layout Internals (Navbar, Sidebar)     | 2          |
 | L2    | Major Sections (Composition, Timeline) | 4          |
 | L3    | Module Internals                       | ~45        |
-| L4    | Deep Components                        | ~20        |
+| L4    | Deep Components                        | ~64        |
 | L5    | UI Primitives                          | ~20        |
 
 ### The Core Principle
@@ -360,7 +360,7 @@ shadowRoot.dispatchEvent(evt)  → element.dispatchEvent(evt)
 const externalPackages = ["@easyvideo/shared", "@rendley/sdk", "mobx"];
 ```
 
-### Issue 6: Circular Dependencies
+### Issue 3: Circular Dependencies
 
 **Symptom:** Build failures and runtime errors due to modules importing each other in a cycle.
 
@@ -371,7 +371,7 @@ const externalPackages = ["@easyvideo/shared", "@rendley/sdk", "mobx"];
 1. **Callback injection** - Instead of importing directly, pass dependencies as callbacks during initialization
 2. **Re-export pattern** - Create intermediate modules that break the cycle by re-exporting from a single entry point
 
-### Issue 7: Direct DOM Manipulation Assumptions
+### Issue 4: Direct DOM Manipulation Assumptions
 
 **Symptom:** Code breaking because expected elements weren't in the DOM at runtime.
 
@@ -379,7 +379,7 @@ const externalPackages = ["@easyvideo/shared", "@rendley/sdk", "mobx"];
 
 **Solution:** Updated the code to check for element existence before manipulation and ensured custom elements were registered before Vue mounts.
 
-### Issue 8: MobX vs Vue Reactivity Mismatch
+### Issue 5: MobX vs Vue Reactivity Mismatch
 
 **Symptom:** State changes in MobX stores not triggering Vue component re-renders, or vice versa.
 
