@@ -83,10 +83,26 @@
       "badge": "Developer Experience",
       "title": "Day-to-Day Pain Points",
       "features": [
-        { "icon": "🔧", "title": "No Dev Tools", "description": "No dedicated debugging tools" },
-        { "icon": "🔄", "title": "Broken HMR", "description": "Full page reloads required" },
-        { "icon": "📝", "title": "Poor IDE Support", "description": "No code completion" },
-        { "icon": "📚", "title": "Small Community", "description": "Fewer resources & tutorials" }
+        {
+          "icon": "🔧",
+          "title": "No Dev Tools",
+          "description": "No dedicated debugging tools"
+        },
+        {
+          "icon": "🔄",
+          "title": "Broken HMR",
+          "description": "Full page reloads required"
+        },
+        {
+          "icon": "📝",
+          "title": "Poor IDE Support",
+          "description": "No code completion"
+        },
+        {
+          "icon": "📚",
+          "title": "Small Community",
+          "description": "Fewer resources & tutorials"
+        }
       ]
     },
     {
@@ -181,10 +197,26 @@
       "badge": "Risk Mitigation",
       "title": "How We Made It Possible",
       "features": [
-        { "icon": "📋", "title": "Careful Planning", "description": "Layer-by-layer migration strategy" },
-        { "icon": "🧪", "title": "E2E Tests", "description": "Automated regression for each layer" },
-        { "icon": "🔄", "title": "Incremental", "description": "Vue app always running & validated" },
-        { "icon": "✅", "title": "Verification", "description": "Each phase verified before proceeding" }
+        {
+          "icon": "📋",
+          "title": "Careful Planning",
+          "description": "Layer-by-layer migration strategy"
+        },
+        {
+          "icon": "🧪",
+          "title": "E2E Tests",
+          "description": "Automated regression for each layer"
+        },
+        {
+          "icon": "🔄",
+          "title": "Incremental",
+          "description": "Vue app always running & validated"
+        },
+        {
+          "icon": "✅",
+          "title": "Verification",
+          "description": "Each phase verified before proceeding"
+        }
       ]
     },
     {
@@ -206,8 +238,6 @@
       "type": "content",
       "badge": "AI-Assisted",
       "title": "Claude Code Setup",
-      "image": "images/claude-code-meme.png",
-      "imageAlt": "Claude Code in action",
       "imageCaption": "The AI pair programmer",
       "twoColumn": {
         "left": {
@@ -248,10 +278,26 @@
       "badge": "Success Criteria",
       "title": "How We Measured Success",
       "features": [
-        { "icon": "🎯", "title": "Same Behavior", "description": "App works exactly the same" },
-        { "icon": "✅", "title": "All Features", "description": "Work identically in Vue" },
-        { "icon": "🧪", "title": "E2E Validated", "description": "Each step tested" },
-        { "icon": "🛡️", "title": "No Regressions", "description": "Zero bugs introduced" }
+        {
+          "icon": "🎯",
+          "title": "Same Behavior",
+          "description": "App works exactly the same"
+        },
+        {
+          "icon": "✅",
+          "title": "All Features",
+          "description": "Work identically in Vue"
+        },
+        {
+          "icon": "🧪",
+          "title": "E2E Validated",
+          "description": "Each step tested"
+        },
+        {
+          "icon": "🛡️",
+          "title": "Minimal Regressions",
+          "description": "Very few bugs introduced"
+        }
       ]
     },
     {
@@ -363,12 +409,36 @@
       "badge": "Maximizing AI",
       "title": "Utilizing Everything Available",
       "features": [
-        { "icon": "📜", "title": "Rules", "description": "Detailed migration rules in CLAUDE.md" },
-        { "icon": "🛠️", "title": "Skills", "description": "Reusable prompts for repetitive tasks" },
-        { "icon": "📝", "title": "Tasklists", "description": "Clear acceptance criteria & verification" },
-        { "icon": "🤖", "title": "Parallel Agents", "description": "Multiple agents on independent components" },
-        { "icon": "📊", "title": "Decision Logs", "description": "Document choices for consistency" },
-        { "icon": "🧠", "title": "Memory Files", "description": "Track learnings across sessions" }
+        {
+          "icon": "📜",
+          "title": "Rules",
+          "description": "Detailed migration rules in CLAUDE.md"
+        },
+        {
+          "icon": "🛠️",
+          "title": "Skills",
+          "description": "Reusable prompts for repetitive tasks"
+        },
+        {
+          "icon": "📝",
+          "title": "Tasklists",
+          "description": "Clear acceptance criteria & verification"
+        },
+        {
+          "icon": "🤖",
+          "title": "Parallel Agents",
+          "description": "Multiple agents on independent components"
+        },
+        {
+          "icon": "📊",
+          "title": "Decision Logs",
+          "description": "Document choices for consistency"
+        },
+        {
+          "icon": "🧠",
+          "title": "Memory Files",
+          "description": "Track learnings across sessions"
+        }
       ]
     },
     {
@@ -403,9 +473,18 @@
       "title": "Agent Orchestration Flow",
       "diagram": {
         "nodes": [
-          { "label": "Orchestrator", "description": "Plan → Tasks, select E2E tests" },
-          { "label": "Migration Agent", "description": "Convert components in parallel" },
-          { "label": "Validation Agent", "description": "Verify syntax, style, consumers" },
+          {
+            "label": "Orchestrator",
+            "description": "Plan → Tasks, select E2E tests"
+          },
+          {
+            "label": "Migration Agent",
+            "description": "Convert components in parallel"
+          },
+          {
+            "label": "Validation Agent",
+            "description": "Verify syntax, style, consumers"
+          },
           { "label": "E2E Tests", "description": "Run layer regression tests" }
         ]
       },
@@ -534,7 +613,7 @@
         "type": "success",
         "icon": "✅",
         "title": "Solution",
-        "text": "Check element existence before manipulation + ensure custom elements registered before Vue mounts"
+        "text": "Registered Stencil components as custom elements via Vue's app.config.compilerOptions.isCustomElement, so Vue treats <ve-*> tags as native custom elements instead of trying to resolve them as Vue components"
       }
     },
     {
@@ -548,7 +627,7 @@
           "bullets": [
             "Requires full mutation",
             "Replace entire object/array",
-            "Observable-based tracking"
+            "Observer Pattern-based tracking"
           ]
         },
         "right": {
@@ -600,10 +679,26 @@
       "badge": "Timeline",
       "title": "32 Days Start to Finish",
       "timeline": [
-        { "date": "Week 0", "title": "Planning", "description": "Architecture, strategy, rules definition" },
-        { "date": "Dec 24-26", "title": "Phase 1: Logic", "description": "16 shared stores + core services extracted" },
-        { "date": "Dec 30-Jan 22", "title": "Phase 2: Components", "description": "5 UI layers migrated to Vue" },
-        { "date": "Jan 22-23", "title": "Cleanup", "description": "Old framework removal & final verification" }
+        {
+          "date": "Week 0",
+          "title": "Planning",
+          "description": "Architecture, strategy, rules definition"
+        },
+        {
+          "date": "Dec 24-26",
+          "title": "Phase 1: Logic",
+          "description": "16 shared stores + core services extracted"
+        },
+        {
+          "date": "Dec 30-Jan 22",
+          "title": "Phase 2: Components",
+          "description": "5 UI layers migrated to Vue"
+        },
+        {
+          "date": "Jan 22-23",
+          "title": "Cleanup",
+          "description": "Old framework removal & final verification"
+        }
       ]
     },
     {
@@ -641,9 +736,6 @@
       "badge": "Efficiency Gains",
       "title": "4× More Efficient",
       "subtitle": "Estimated vs actual execution",
-      "image": "images/best-meme-templates-18.avif",
-      "imageAlt": "Success meme",
-      "imageCaption": "When AI actually works",
       "stats": [
         { "value": "~1000", "label": "Hours (Estimated)" },
         { "value": "~256", "label": "Hours (Actual)" },
@@ -653,23 +745,29 @@
     },
     {
       "type": "content",
-      "badge": "The Team",
-      "title": "Who Made It Happen",
-      "features": [
-        { "icon": "👨‍💻", "title": "Ahmed Maher", "description": "Architecture, execution plan, core logic migration, UI delivery & cleanup" },
-        { "icon": "👨‍💻", "title": "Omar Kamal", "description": "E2E test infrastructure, migration validation, long-term stability" }
-      ],
-      "note": "2 engineers completed the full migration. ~750 dev hours saved."
-    },
-    {
-      "type": "content",
       "badge": "Impact",
       "title": "Why This Matters",
       "features": [
-        { "icon": "🔓", "title": "No Legacy Constraints", "description": "Free from Stencil limitations" },
-        { "icon": "🏗️", "title": "Modern Foundation", "description": "Scalable Vue architecture" },
-        { "icon": "🧪", "title": "Automated Testing", "description": "First time ever for EasyVideo" },
-        { "icon": "🛡️", "title": "Reduced Risk", "description": "Less QA overhead going forward" }
+        {
+          "icon": "🔓",
+          "title": "No Legacy Constraints",
+          "description": "Free from Stencil limitations"
+        },
+        {
+          "icon": "🏗️",
+          "title": "Modern Foundation",
+          "description": "Scalable Vue architecture"
+        },
+        {
+          "icon": "🧪",
+          "title": "Automated Testing",
+          "description": "First time ever for EasyVideo"
+        },
+        {
+          "icon": "🛡️",
+          "title": "Reduced Risk",
+          "description": "Less QA overhead going forward"
+        }
       ],
       "note": "A faster, safer, and more maintainable editor platform moving forward"
     },
@@ -680,8 +778,7 @@
       "stats": [
         { "value": "267", "label": "Vue Components" },
         { "value": "140", "label": "E2E Tests" },
-        { "value": "~750", "label": "Dev Hours Saved" },
-        { "value": "0", "label": "Prod Incidents" }
+        { "value": "~750", "label": "Dev Hours Saved" }
       ]
     },
     {
